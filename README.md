@@ -20,6 +20,7 @@ QueueSync/
 │   ├── coordinator.py
 │   └── worker.py
 ├── tests/
+│   ├── __init__.py
 │   ├── test_coordinator.py
 │   └── test_worker.py
 ├── .gitignore
