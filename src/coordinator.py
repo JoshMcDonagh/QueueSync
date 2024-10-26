@@ -82,7 +82,7 @@ class Coordinator(ABC):
                 self.display_update(f"Closed connection with {client_address}.")
                 self.request_queue.task_done()  # Mark the task as done in the queue
 
-    def run(self) -> None:
+    def start(self) -> None:
         """
         Starts the server, listens for incoming connections, and handles them
         by queueing each client request. A separate thread processes requests from the queue.
