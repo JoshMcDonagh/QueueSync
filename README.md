@@ -15,18 +15,18 @@ The project is organized as follows:
 
 ```plaintext
 QueueSync/
-│
-├── src/                    # Source code for the library
+├── src/
 │   ├── __init__.py
-│   ├── coordinator.py      # Coordinator class (abstract server)
-│   └── worker.py           # Worker class (abstract client)
-│
-├── tests/                  # Unit tests for the library
-│   └── __init__.py
-│
-├── .gitignore              # Git ignore file
-├── LICENSE                 # License for the project
-└── README.md               # Project documentation
+│   ├── coordinator.py
+│   └── worker.py
+├── tests/
+│   ├── test_coordinator.py
+│   └── test_worker.py
+├── .gitignore
+├── LICENSE
+├── README.md
+├── setup.py                   
+└── pyproject.toml
 ```
 
 ## Installation
