@@ -35,8 +35,8 @@ QueueSync/
 Clone the repository and ensure you have Python 3.x installed. Optionally, set up a virtual environment:
 
 ```
-git clone https://github.com/yourusername/inter-machine-coordinator-library.git
-cd inter-machine-coordinator-library
+git clone https://github.com/JoshMcDonagh/QueueSync.git
+cd queuesync
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
 ```
