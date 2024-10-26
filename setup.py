@@ -11,8 +11,8 @@ setup(
     description="A library for coordinated client-server communication using a queue-based approach.",
     long_description=long_description,
     long_description_content_type="text/markdown",  # Set this to "text/markdown" for Markdown or "text/x-rst" for reStructuredText
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Joshua McDonagh",
+    author_email="joshua.mcdonagh@manchester.ac.uk",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     classifiers=[
