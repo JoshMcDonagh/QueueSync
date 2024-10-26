@@ -32,6 +32,7 @@ class Coordinator(ABC):
         self.port = port
         self.max_num_of_clients = max_num_of_clients
         self.are_updates_displayed = are_updates_displayed
+        self.running = False    # Controls the server's main loop in `start()`
 
         # Queue to store client requests
         self.request_queue = queue.Queue()
@@ -87,6 +88,9 @@ class Coordinator(ABC):
         Starts the server, listens for incoming connections, and handles them
         by queueing each client request. A separate thread processes requests from the queue.
         """
+
+        self.running = True
+
         # Initialize server socket
         server_socket = socket.socket()
         server_socket.bind((self.host, self.port))
@@ -97,13 +101,21 @@ class Coordinator(ABC):
         threading.Thread(target=self.process_requests, daemon=True).start()
 
         # Main loop to accept and enqueue client connections
-        while True:
+        while self.running:
             # Accept a client connection
             client_socket, client_address = server_socket.accept()
             self.display_update(f"Accepted connection from {client_address}.")
 
             # Queue the client's request in a separate thread
             threading.Thread(target=self.queue_client_request, args=(client_socket, client_address)).start()
+
+    def stop(self) -> None:
+        """
+        Stops the server by setting the running flag to False. This will exit the main loop in `start()`,
+        preventing new connections from being accepted. Note that currently connected clients will continue
+        to be processed until completion.
+        """
+        self.running = False
 
     @abstractmethod
     def handle_request(self, client_socket: socket.socket, client_address: Tuple[str,int], received_data: bytes) -> bytes:
