@@ -2,6 +2,7 @@ import queue
 import socket
 import threading
 from abc import ABC, abstractmethod
+from typing import Tuple
 
 
 class Coordinator(ABC):
@@ -45,7 +46,7 @@ class Coordinator(ABC):
         if self.are_updates_displayed:
             print(message)
 
-    def queue_client_request(self, client_socket, client_address) -> None:
+    def queue_client_request(self, client_socket: socket.socket, client_address: Tuple[str, int]) -> None:
         """
         Enqueues the client request (socket and address) into the request queue.
 
@@ -70,7 +71,7 @@ class Coordinator(ABC):
             try:
                 # Call handle_request to get the response data
                 received_data = client_socket.recv(1024)  # Receive data from client
-                response = self.handle_request(client_socket, client_address, received_data).encode()
+                response = self.handle_request(client_socket, client_address, received_data)
 
                 # Send the response back to the client
                 client_socket.send(response)
@@ -105,7 +106,7 @@ class Coordinator(ABC):
             threading.Thread(target=self.queue_client_request, args=(client_socket, client_address)).start()
 
     @abstractmethod
-    def handle_request(self, client_socket, client_address, received_data):
+    def handle_request(self, client_socket: socket.socket, client_address: Tuple[str,int], received_data: bytes) -> bytes:
         """
         Abstract method to handle the client's request. Must be implemented in a subclass.
 
@@ -115,6 +116,6 @@ class Coordinator(ABC):
             received_data (bytes): The data received from the client.
 
         Returns:
-            str: The response to send back to the client.
+            bytes: The response to send back to the client.
         """
         pass
