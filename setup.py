@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="queuesync",
-    version="1.0.0",
+    version="1.0.1",
     description="A library for coordinated client-server communication using a queue-based approach.",
     long_description=long_description,
     long_description_content_type="text/markdown",  # Set this to "text/markdown" for Markdown or "text/x-rst" for reStructuredText
